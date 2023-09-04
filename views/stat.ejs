@@ -1,0 +1,283 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Rally Stats</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="img/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+   
+</head>
+<body class="bg">
+        <div class="container-fluid topnav">
+            <div class="row">
+            <div class="col-6">
+                <b><a href="https://novarally.io/home">Play Nova Rally</a>
+                <a href="https://wax.atomichub.io/market?collection_name=novarallywax&order=asc&schema_name=vehicles&sort=price&symbol=WAX">Buy Assets</a></b>
+            </div>
+            <div class="col-6 text-right">
+                <h1 data-text="NOVA RALLY" class="nova">NOVA RALLY</h1>
+            </div>              
+            </div>
+            <hr class="bg-white">
+        </div>
+      
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="taas">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card p-3 mb-2">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <div class="icon"> <i class="fa-solid fa-gamepad" style="color: #ffffff;"></i> </div>
+                                            <div class="ms-2 c-details">
+                                                <h2 style="color:black;"><b>Player Stats</b></h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-5">
+                                        <div class="row">
+                                            <div class="col-md-6"><h3 style="color:black;">User:</h3></div>
+                                            <div class="col-md-6"><h3 style="color:black;">Frequent Position:</h3></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6"><h3 class="stats"></h3><%= user %></div>
+                                            <div class="col-md-6"><h3 class="stats"></h3><%= mode %></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6"><h3 style="color:black;">Total Races:</h3></div>
+                                            <div class="col-md-6"><h3 style="color:black;">Podium Finishes:</h3></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6"><h3 class="stats"></h3><%= totalRaces %></div>
+                                            <div class="col-md-6"><h3 class="stats"></h3><%= positionCount %></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="container">
+                        <div class="mb-3">
+                            <form action="/stat" method="post">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="">Enter WAX address:</span>
+                                    </div>
+                                    <input class="form-control" type="text" name="username" placeholder="wax.wam" required>
+                                    <div class="input-group-append">
+                                    <button id="hide" class="btn btn-outline-primary" type="submit">Enter</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <br>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+
+            <div class="gitna">
+                <div class="row">
+                    <div class="col">
+                        <div class="container-fluid">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <h1 class="player">Player History</h1>
+                                    </div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="col text-light" id="disappear">
+                                        <table id="myTable" class="myTable" style="width: 100%;">
+                                        <thead>
+                                            <th>Race ID</th>
+                                            <th>Vehicle</th>
+                                            <th>Driver</th>
+                                            <th>Co-Pilot</th>
+                                            <th>Leauge</th>
+                                            <th>Position</th>
+                                            <th>Total Time</th>
+                                            <th>Boost</th>
+                                            <th>Gear</th>
+                                            <th>Status</th>
+                                        </thead>
+                                        <tbody id="results-table">
+                                            <% for (let result of results) { %>
+                                            <tr>
+                                                <td><%= result.id %></td>
+                                                <td>
+                                                    <img src="<%= result['vehicle'] %>" alt="" srcset="" class="asset">
+                                                    <br>
+                                                    <%= result['vehicle-name'] %>
+                                                </td>
+                                                <td>
+                                                    <img src="<%= result['driver'] %>" alt="" srcset="" class="asset">
+                                                    <br>
+                                                    <%= result['driver-name'] %>
+                                                </td>
+                                                <td>
+                                                    <img src="<%= result['copilot'] %>" alt="" srcset="" class="asset">
+                                                    <br>
+                                                    <%= result['copilot-name'] %>
+                                                </td>
+                                                <td><%= result.league %></td>
+                                                <td><%= result.position %></td>
+                                                <td><%= (result.time / 1000 / 60).toFixed(2) %> minutes</td>
+                                                <td><%= result.boost ? 'Yes' : 'No' %></td>
+                                                <td><%= result.gear ? 'Yes' : 'No' %></td>
+                                                <td><%= result.status %></td>
+                                            </tr>
+                                            <% } %>
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div id="loader" class="center"></div>
+                                    </div>
+                                </div>          
+                                <div class="row">
+                                    <div class="col">
+                                        <form id="load-more-form" method="POST" action="/results">
+                                            <input type="hidden" name="start" value="10">
+                                            <input type="hidden" name="end" value="20">
+                                            <input type="hidden" name="allRaces" value="<%= JSON.stringify(allRaces) %>" id="allRacesInput">
+                                            <button id="load-more-button" class="btn">Load More</button>
+                                        </form>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+
+          <footer class="footer">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-3 d-flex justify-content-center">
+                  <a href="https://discord.com/invite/cjQPthMrfG" target="_blank">
+                    <i class="fa-brands fa-discord fa-2xl" style="color: #ffffff;"></i>
+                    Discord
+                  </a>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center">
+                  <a href="https://twitter.com/novarallywax?lang=en" target="_blank">
+                    <i class="fa-brands fa-twitter fa-2xl" style="color: #ffffff;"></i>
+                    Twitter
+                  </a>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center">
+                    <a href="https://www.instagram.com/novarallywax/" target="_blank">
+                      <i class="fa-brands fa-instagram fa-2xl" style="color: #ffffff;"></i>
+                      Instagram
+                    </a>
+                  </div>
+                <div class="col-md-3 d-flex justify-content-center">
+                  <a href="https://www.facebook.com/NovaRallywax" target="_blank">
+                    <i class="fa-brands fa-facebook fa-2xl" style="color: #ffffff;"></i>
+                    Facebook
+                  </a>
+                </div>
+              </div>
+            </div>
+          </footer>
+
+        </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+    
+            function convertMsToMin(milliseconds) {
+              return (milliseconds / 1000 / 60).toFixed(2) + ' min';
+            }
+    
+            $("#hide").click(function(){
+                $("#disappear").hide();
+                document.querySelector("#loader").style.display = "flex";
+            });
+    
+            $('#load-more-form').submit(function(event){
+                event.preventDefault();
+                const start = 10;
+                const end = 20;
+                const allRacesInput = document.getElementById('allRacesInput');
+                const allRaces = JSON.parse(allRacesInput.value);
+                const table = $('#myTable').DataTable();
+    
+                $.ajax({
+                    url: '/results',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        start: start,
+                        end: end,
+                        allRaces: JSON.stringify(allRaces)
+                    },
+                    success: function(results) {
+                        $.each(results, function(index, row) {
+                            const newRow = $('<tr>');
+                            const vehicleTd = $('<td>');
+                            const vimg = $('<img>').attr('src', row.vehicle).attr('alt', '').addClass('asset');
+                            vehicleTd.append(vimg).append('<br>').append(row['vehicle-name']);
+    
+                            const driverTd = $('<td>');
+                            const dimg = $('<img>').attr('src', row.driver).attr('alt', '').addClass('asset');
+                            driverTd.append(dimg).append('<br>').append(row['driver-name']);
+    
+                            const copilotTd = $('<td>');
+                            const cimg = $('<img>').attr('src', row.copilot).attr('alt', '').addClass('asset');
+                            copilotTd.append(cimg).append('<br>').append(row['copilot-name']);
+    
+                            newRow.append($('<td>').text(row.id));
+                            newRow.append(vehicleTd);
+                            newRow.append(driverTd);
+                            newRow.append(copilotTd);
+                            newRow.append($('<td>').text(row.league));
+                            newRow.append($('<td>').text(row.position));
+                            newRow.append($('<td>').text(convertMsToMin(row.time))); // Display time in minutes
+                            newRow.append($('<td>').text(row.boost ? 'Yes' : 'No'));
+                            newRow.append($('<td>').text(row.gear ? 'Yes' : 'No'));
+                            newRow.append($('<td>').text(row.status));
+                            table.row.add(newRow).draw(); // Append the new row and redraw the table
+                        });
+    
+                        // update the start and end values in the form
+                        const newStart = parseInt(event.target.querySelector('[name="start"]').value) + 5;
+                        const newEnd = parseInt(event.target.querySelector('[name="end"]').value) + 5;
+                        event.target.querySelector('[name="start"]').value = newStart;
+                        event.target.querySelector('[name="end"]').value = newEnd;
+    
+                        // enable the button again
+                        $('#load-more-button').prop('disabled', false);
+                        $('#loader').hide();
+                    },
+    
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error loading results:', errorThrown);
+                    }
+                });
+    
+                $('#load-more-button').prop('disabled', true); // disable the button while the request is in progress
+                $('#loader').show();
+            });
+        });
+    </script>
+    
+        
+</body>
+</html>

@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@900&display=swap');
+
+
+
+
+.bg {
+    background-color: #080C21;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.topnav {
+  display: block !important;
+}
+
+
+h1.nova {
+  font-family: 'Londrina Solid', sans-serif;
+  font-size: 48px;
+  color: #eca841;
+  letter-spacing: 0.1em;
+}
+
+
+h1.player {
+  font-family: 'Londrina Solid', sans-serif;
+  font-size: 56px;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+
+h3.player {
+    font-family: 'Londrina Solid', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 0.1em;
+    margin-top: 30px;
+}
+
+h3.stats {
+  color: white;
+}
+
+img.asset {
+    width: 50px;
+    height: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.taas{
+    color: white
+}
+
+.gitna{
+    color: white;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#loader {
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 12px solid #444444;
+  width: 70px;
+  height: 70px;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+
+@keyframes spin {
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+select{
+  color: white;
+}
+
+option{
+  color: black;
+}
+
+input{
+  color: white;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  font-family: 'Londrina Solid', cursive;
+  background: linear-gradient(201.05deg,#EF8F49 -7.32%,#F15742 104.5%) !important;
+}
+
+
+.c-details h2 {
+  font-weight: 300;
+  color: black;
+  margin-left: 20px;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  background-color: #080C21;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 39px
+}
+
+.myTable{
+  background-color: #27184Eff;
+  color: white;
+}
+
+#load-more-button{
+  border-radius: 3px;
+  font-family: 'Londrina Solid', cursive;
+  color: white;
+  background: linear-gradient(201.05deg,#EF8F49 -7.32%,#F15742 104.5%) !important;
+}
+
+/* Set the height and background color for the footer */
+.footer {
+  height: 100px;
+  border-top: 1px solid #fff;
+}
+
+/* Center the content and add equal spacing between the columns */
+.footer .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+
+/* Set the font color and size for the links */
+.footer a {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+
+
+
+
